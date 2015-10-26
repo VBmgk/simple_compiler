@@ -1,0 +1,5 @@
+P -> LDE
+LDE -> LDE DV | DV
+DV -> ‘var’ ID ‘:’ T ‘;’
+T -> 'integer'
+   | 'boolean'
