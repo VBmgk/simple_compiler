@@ -1,0 +1,42 @@
+P -> LDE
+LDE -> LDE DE
+     | DE
+DE -> DV
+     | DF
+DV -> ‘var’ IDD ‘:’ T ‘;’
+T -> 'integer'
+   | 'boolean'
+DF -> ‘function’ main ’(‘ void ‘)’ ‘:’ integer B
+B -> ‘{‘ LDV S ‘}’
+LDV -> LDV DV
+     | DV
+S -> ‘if’ ‘(‘ L ‘)’ S else S
+   | B
+   | L ‘;’
+   | ‘break’ ‘;’
+L -> L ‘<’ R
+   | L ‘>’ R
+   | L ‘<=’ R
+   | L ‘>=’ R
+   | L ‘==’ R
+   | L ‘!=’ R
+   | R
+R -> R ‘+’ F
+  | R ‘-’ F
+  | F
+F -> IDU
+   | IDU ‘=‘ L
+   | TRUE
+   | FALSE
+   | NUM
+ID -> Id
+IDD -> Id
+IDU -> Id
+TRUE -> ‘true’
+FALSE -> ‘false’
+NUM -> n
+-----------------
+n = digito+
+digito = ‘0’..’9’
+Id = letra . ( letra + digito )*
+letra = ‘a’..’z’ + ‘A’...’Z’
