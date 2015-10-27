@@ -300,7 +300,7 @@ t_token AlexicalAnalizer::nextToken(void) {
       break;
     }
   }
-  // Checa se o código já foi lido
+  // Check if code has already been read
   if (end_of_code) { return END_OF_CODE; }
 
   // setup last token variables
@@ -308,6 +308,31 @@ t_token AlexicalAnalizer::nextToken(void) {
   last_token2 = token2;
 
   return token;
+}
+
+void AlexicalAnalizer::print_const(int token_2) {
+  // check if token_2 is in range
+  if ( token_2 < 0 || token_2 >= const_table.size() ) return;
+  // get reference from const table
+  ConstValue c = const_table.at(token_2);
+  // print data
+  printf("Const value:\ttype:");
+  switch(c.type) {
+    case NUMERAL:
+      printf("numeral\tvalue: %d\n", c.int_const);
+      break;
+    case ID:
+      printf("id\tname: %s\n", c.id_name);
+      break;
+    case STRINGVAL:
+      printf("stringval\tvalue: %s\n", c.string_const);
+      break;
+    case CHARACTER:
+      printf("character\tvalue: %c\n", c.char_const);
+      break;
+    default:
+      printf("\tcorrupted const table!!\n");
+  }
 }
 
 void AlexicalAnalizer::print(t_token t) {

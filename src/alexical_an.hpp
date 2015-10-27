@@ -97,6 +97,7 @@ public:
   int getLastToken2(void);
   t_token searchKeyWord(std::string);
   int searchName(std::string);
+  void print_const(int);
   void print(t_token);
 };
 #endif
